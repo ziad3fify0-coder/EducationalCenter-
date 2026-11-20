@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6250b8">
+  <title>لوحة الطالب | Student Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div><strong>EDUCATIONAL CENTER</strong><small>لوحة الطالب</small></div>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">☰</button>
+      <div class="student-chip"><span class="avatar"></span><span><b id="topStudentName"></b><small></small></span></div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        <div class="side-profile">
+          <div class="profile-avatar"></div>
+          <b></b>
+          <span></span>
+        </div>
+        <nav class="nav">
+          <button class="nav-link active" data-page="overview"><span>⌂</span> الرئيسية</button>
+          <button class="nav-link" data-page="profile"><span>♙</span> الملف الشخصي</button>
+          <button class="nav-link" data-page="expenses"><span>▣</span> المصروفات</button>
+          <button class="nav-link" data-page="exams"><span>▤</span> الامتحانات</button>
+          <button class="nav-link" data-page="attendance"><span>▦</span> الحضور والغياب</button>
+          <button class="nav-link" data-page="analysis"><span>⌁</span> التحليل العام</button>
+          <button class="nav-link" data-page="daily"><span>✧</span> التقرير اليومي</button>
+        </nav>
+        <div class="side-footer">EDUCATIONAL CENTER © 2026</div>
+      </aside>
+
+      <main class="main">
+        <section class="welcome">
+          <div><span class="eyebrow">مرحباً بعودتك</span><h1>أهلاً، <span></span></h1><p>تابع مستواك الدراسي وكل تفاصيلك من مكان واحد.</p></div>
+          <div class="welcome-icon">✦</div>
+        </section>
+
+        <section class="page active" id="overview">
+          <div class="section-heading"><div><span class="eyebrow">نظرة سريعة</span><h2>ملخص لوحة الطالب</h2></div><span class="date-pill" id="todayDate"></span></div>
+          <div class="stats-grid">
+            <article class="stat-card green"><div class="stat-icon">✓</div><span>امتحانات مكتملة</span><strong>—</strong><small></small></article>
+            <article class="stat-card orange"><div class="stat-icon">◎</div><span>أقل نسبة مئوية</span><strong>—</strong><small>تحتاج إلى متابعة</small></article>
+            <article class="stat-card purple"><div class="stat-icon">↗</div><span>أعلى نسبة مئوية</span><strong>—</strong><small>أداء متميز</small></article>
+            <article class="stat-card yellow"><div class="stat-icon">◉</div><span>متوسط نسبة الحضور</span><strong>—</strong><small></small></article>
+          </div>
+          <div class="content-grid">
+            <article class="panel">
+              <div class="panel-title"><h3>آخر نتائج الامتحانات</h3><button class="text-btn" data-go="exams">عرض الكل ←</button></div>
+              <div class="result-list"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-title"><h3>الحضور والغياب</h3><button class="text-btn" data-go="attendance">التفاصيل ←</button></div>
+              <div class="attendance-summary"><div class="donut"><div><b>—</b><small>نسبة الحضور</small></div></div><div class="legend"><span><i class="legend-green"></i> حاضر <b>0</b></span><span><i class="legend-orange"></i> غائب <b>0</b></span></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" id="profile">
+          <div class="section-heading"><div><span class="eyebrow">بياناتك</span><h2>الملف الشخصي</h2></div></div>
+          <article class="panel profile-panel">
+            <div class="large-avatar"></div><h2></h2><p class="muted"></p>
+            <div class="details-grid">
+              <div class="detail"><small>رقم الطالب</small><b>—</b></div><div class="detail"><small>رقم هاتف الطالب</small><b dir="ltr">—</b></div>
+              <div class="detail"><small>رقم ولي الأمر</small><b dir="ltr">—</b></div><div class="detail"><small>المجموعة</small><b>—</b></div>
+              <div class="detail"><small>تاريخ التسجيل</small><b>—</b></div><div class="detail"><small>الصف</small><b>—</b></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="page" id="expenses">
+          <div class="section-heading"><div><span class="eyebrow">متابعة الحساب</span><h2>المصروفات</h2></div></div>
+          <div class="stats-grid three">
+            <article class="stat-card orange"><div class="stat-icon">!</div><span>المصروفات الشهرية</span><strong>—</strong></article>
+            <article class="stat-card yellow"><div class="stat-icon">◷</div><span>حالة الشهر الجاري</span><strong class="medium-text">—</strong></article>
+            <article class="stat-card green"><div class="stat-icon">✓</div><span>عدد الشهور المدفوعة</span><strong>—</strong></article>
+          </div>
+          <article class="panel"><div class="panel-title"><h3>حالة الأقساط الشهرية</h3><span class="muted">تقويم الأقساط</span></div><div class="months">
+          </div></article>
+          <article class="panel"><h3>سجل المدفوعات</h3><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الشهر</th><th>المبلغ</th></tr></thead><tbody></tbody></table></div></article>
+        </section>
+
+        <section class="page" id="exams">
+          <div class="section-heading"><div><span class="eyebrow">درجاتك ونتائجك</span><h2>الامتحانات</h2></div><span class="status-pill"></span></div>
+          <div class="stats-grid">
+            <article class="stat-card green"><div class="stat-icon">☆</div><span>امتحانات مكتملة</span><strong>—</strong></article>
+            <article class="stat-card orange"><div class="stat-icon">◎</div><span>أقل نسبة مئوية</span><strong>—</strong></article>
+            <article class="stat-card purple"><div class="stat-icon">↗</div><span>أعلى نسبة مئوية</span><strong>—</strong></article>
+            <article class="stat-card yellow"><div class="stat-icon">♙</div><span>متوسط النسبة</span><strong>—</strong></article>
+          </div>
+          <article class="panel"><div class="panel-title"><h3>نتائج الامتحانات</h3><span class="muted">آخر الدرجات المسجلة</span></div><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الامتحان</th><th>الدرجة</th><th>التقدير</th></tr></thead><tbody></tbody></table></div></article>
+          <article class="panel chart-panel"><div class="panel-title"><h3>توزيع التقديرات</h3></div><div class="chart-box"><canvas id="gradesChart"></canvas></div></article>
+        </section>
+
+        <section class="page" id="attendance">
+          <div class="section-heading"><div><span class="eyebrow">التزامك الدراسي</span><h2>الحضور والغياب</h2></div></div>
+          <div class="stats-grid three">
+            <article class="stat-card orange"><div class="stat-icon">◷</div><span>مرات الحضور</span><strong>—</strong></article>
+            <article class="stat-card green"><div class="stat-icon">▦</div><span>مرات الغياب</span><strong>—</strong></article>
+            <article class="stat-card purple"><div class="stat-icon">↗</div><span>متوسط الحضور</span><strong>—</strong></article>
+          </div>
+          <article class="panel"><h3>العمليات الأخيرة</h3><div class="activity-list"></div></article>
+        </section>
+
+        <section class="page" id="analysis">
+          <div class="section-heading"><div><span class="eyebrow">مؤشرات الأداء</span><h2>التحليل العام</h2></div></div>
+          <article class="panel chart-panel"><div class="panel-title"><h3>معدل الدرجات الشهري</h3><span class="muted">النسبة المئوية</span></div><div class="chart-box"><canvas id="monthlyChart"></canvas></div></article>
+          <article class="panel chart-panel"><div class="panel-title"><h3>معدل الحضور الشهري</h3><span class="muted">نسبة الحضور</span></div><div class="chart-box"><canvas id="attendanceChart"></canvas></div></article>
+        </section>
+
+        <section class="page" id="daily">
+          <div class="section-heading"><div><span class="eyebrow">متابعة اليوم</span><h2>التقرير اليومي</h2></div></div>
+          <article class="panel"><h3>ملاحظات اليوم</h3><div class="empty-state">لا توجد ملاحظات اليوم</div><h3 class="spaced">ملخص الأداء</h3><div class="daily-box"><strong>—</strong><b>حضور اليوم</b><span>تم تسجيل الحضور</span></div><div class="daily-box green-box"><strong>—</strong><b>نسبة الحضور</b><span>إجمالي نسبة الحضور</span></div><div class="daily-box purple-box"><strong>—</strong><b>المستوى العام</b><span>متوسط نتائج الامتحانات</span></div></article>
+        </section>
+        <footer class="footer">EDUCATIONAL CENTER 2026 © · لوحة الطالب</footer>
+      </main>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  <script src="db.js"></script>
+</body>
+</html>
